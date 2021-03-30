@@ -1,7 +1,7 @@
 /// app.js
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import DeckGL from '@deck.gl/react';
-import {GeoJsonLayer} from '@deck.gl/layers';
+//import {GeoJsonLayer} from '@deck.gl/layers';
 import {MVTLayer} from '@deck.gl/geo-layers'
 import {StaticMap} from 'react-map-gl';
 import SimpleCard from './SimpleCard'
@@ -20,7 +20,7 @@ const INITIAL_VIEW_STATE = {
 };
 
 // Data to be used by the GeojsonLayer
-
+/*
  const layer = new GeoJsonLayer({
     id: 'geojson-layer',
     data:'https://geojson-data.oss-cn-hangzhou.aliyuncs.com/zone.json',
@@ -46,14 +46,16 @@ const INITIAL_VIEW_STATE = {
     highlightColor:[0,0,0,128]
   })
 
-
+*/
 function App({data}) {
    const [clickInfo, setClickInfo] = useState({});
-
+//'http://127.0.0.1:8080/{z}/{x}/{y}.pbf'
+//    'https://1621743843023572.cn-hangzhou.fc.aliyuncs.com/2016-08-15/proxy/mvtservice-mvtservice-97D5C79D1D31/mvtservice/{z}/{x}/{y}.pbf'
 const layermvt = new MVTLayer({
   id: 'MVTLayer',
   data: [
-    'http://127.0.0.1:8080/{z}/{x}/{y}.pbf'
+    //'http://127.0.0.1:8080/{z}/{x}/{y}.pbf'
+    'https://1621743843023572.cn-hangzhou.fc.aliyuncs.com/2016-08-15/proxy/mvtservice-mvtservice-97D5C79D1D31/mvtservice/{z}/{x}/{y}.pbf'
   ],
   getLineColor: d =>d.properties.isBlue?[0,0,255]:[255,0,0],
   getFillColor: d =>d.properties.isBlue?[0,0,255]:[255,0,0],
@@ -102,7 +104,7 @@ const layermvt = new MVTLayer({
   //onClick: (info, event) => console.log('Clicked:', info, event)
 });
   const layers = [
-    layer,
+    //layer,
     layermvt
   ];
 
